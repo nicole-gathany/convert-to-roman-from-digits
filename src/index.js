@@ -43,7 +43,7 @@ function convertToRoman(num) {
   } else if (tenthPlace > 4 && tenthPlace < 9) {
     arr.push("L");
     if (tenthPlace - 5 > 0) {
-      for (let i = 1; i < tenthPlace - 5; i++) {
+      for (let i = 0; i < tenthPlace - 5; i++) {
         arr.push("X");
       }
     }
