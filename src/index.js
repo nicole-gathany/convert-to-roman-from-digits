@@ -7,6 +7,10 @@ function convertToRoman(num) {
     .map(x => parseInt(x, 10));
   console.log(digits);
   let arr = [];
+  let lastDigit = digits[digits.length - 1];
+  let tenthPlace = digits[digits.length - 2];
+  let hundredthPlace = digits[digits.length - 3];
+
   console.log(digits[digits.length - 2]);
   if (num >= 1000) {
     let thousandth = Math.floor(num / 1000);
@@ -14,12 +18,16 @@ function convertToRoman(num) {
       arr.push("M");
     }
   } //this is always going to be the last digit
-  if (digits[digits.length - 1] <= 3) {
-    for (let i = 0; i < digits[digits.length - 1]; i++) {
+  if (lastDigit <= 3) {
+    for (let i = 0; i < lastDigit; i++) {
       arr.push("I");
     }
+  } else if (lastDigit === 4) {
+    arr.push("IV");
+  } else if (lastDigit > 4 && lastDigit < 9) {
+    arr.push("V");
+    console.log(lastDigit - 5 + " tryna see something");
   }
-
   console.log(arr);
 }
 
