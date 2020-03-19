@@ -11,13 +11,47 @@ function convertToRoman(num) {
   let tenthPlace = digits[digits.length - 2];
   let hundredthPlace = digits[digits.length - 3];
 
-  console.log(digits[digits.length - 2]);
   if (num >= 1000) {
     let thousandth = Math.floor(num / 1000);
     for (let i = 0; i < thousandth; i++) {
       arr.push("M");
     }
-  } //this is always going to be the last digit
+  }
+
+  //hundredth place
+  if (hundredthPlace <= 3) {
+    for (let i = 0; i < hundredthPlace; i++) {
+      arr.push("C");
+    }
+  } else if (hundredthPlace === 4) {
+    arr.push("CD");
+  } else if (hundredthPlace > 4 && hundredthPlace < 9) {
+    arr.push("D");
+    for (let i = 1; i <= hundredthPlace - 5; i++) {
+      arr.push("C");
+    }
+  } else if (hundredthPlace === 9) {
+    arr.push("CM");
+  }
+  //tenth place
+  if (tenthPlace <= 3) {
+    for (let i = 0; i < tenthPlace; i++) {
+      arr.push("X");
+    }
+  } else if (tenthPlace === 4) {
+    arr.push("XL");
+  } else if (tenthPlace > 4 && tenthPlace < 9) {
+    arr.push("L");
+    if (tenthPlace - 5 > 0) {
+      for (let i = 1; i < tenthPlace - 5; i++) {
+        arr.push("X");
+      }
+    }
+  } else if (tenthPlace === 9) {
+    arr.push("XC");
+  }
+
+  //this is always going to be the last digit
   if (lastDigit <= 3) {
     for (let i = 0; i < lastDigit; i++) {
       arr.push("I");
@@ -26,9 +60,16 @@ function convertToRoman(num) {
     arr.push("IV");
   } else if (lastDigit > 4 && lastDigit < 9) {
     arr.push("V");
-    console.log(lastDigit - 5 + " tryna see something");
+    if (lastDigit - 5 > 0) {
+      for (let i = 1; i <= lastDigit - 5; i++) {
+        arr.push("I");
+      }
+    }
+  } else if (lastDigit === 9) {
+    arr.push("IX");
   }
   console.log(arr);
+  return arr.join("");
 }
 
 console.log(convertToRoman(2) + " should return II");
