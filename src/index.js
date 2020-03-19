@@ -1,6 +1,25 @@
 function convertToRoman(num) {
   //i think the length matters but maybe this is unnecessary
-  console.log(num.toString().length);
+  // console.log(num.toString().length);
+  let digits = num
+    .toString()
+    .split("")
+    .map(x => parseInt(x, 10));
+  console.log(digits);
+  let arr = [];
+  //this is always going to be the last digit
+  if (num <= 3) {
+    for (let i = 0; i < num; i++) {
+      arr.push("I");
+    }
+  }
+  if (num >= 1000) {
+    let thousandth = Math.floor(num / 1000);
+    for (let i = 0; i < thousandth; i++) {
+      arr.push("M");
+    }
+  }
+  console.log(arr);
 }
 
 console.log(convertToRoman(2) + " should return II");
